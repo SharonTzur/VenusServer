@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\User;
+use App\LearningResource;
 
 /**
  * Created by PhpStorm.
@@ -10,7 +11,7 @@ use App\User;
  * Date: 10/17/2017
  * Time: 6:14 PM
  */
-class UserService
+class LearningResourceService
 {
 
     public function __construct()
@@ -21,13 +22,13 @@ class UserService
 //    get all users
     public function list(User $user)
     {
-        return User::all();
+        return LearningResource::all();
     }
 
 //    get user by id
     public function find(User $user, $id)
     {
-        return User::where('id',$id)->first();
+        return LearningResource::where('id',$id)->first();
     }
 
 }

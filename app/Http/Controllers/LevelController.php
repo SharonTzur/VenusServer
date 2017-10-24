@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\UserService;
+use App\Services\LevelService;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class LevelController extends Controller
 {
 
-    /** @var UserService */
-    private $userService;
+    /** @var LevelService */
+    private $levelService;
 
 
     /**
      * UserController constructor.
      *
-     * @param UserService $userService
+     * @param LevelService $levelService
      */
     public function __construct(
-        UserService $userService
+        LevelService $levelService
     )
     {
-        $this->userService = $userService;
+        $this->levelService = $levelService;
     }
 
     /**
@@ -35,7 +35,7 @@ class UserController extends Controller
     {
         $user = $request->user();
 
-        $list = $this->userService->list($user);
+        $list = $this->levelService->list($user);
 
         return response()->json([
             'errors' => false,
@@ -55,7 +55,7 @@ class UserController extends Controller
     {
         $user = $request->user();
 
-        $retrievedUser = $this->userService->find($user, $id);
+        $retrievedUser = $this->levelService->find($user, $id);
 
         return response()->json([
             'errors' => false,
@@ -74,11 +74,11 @@ class UserController extends Controller
     {
         $user = $request->user();
 
-        $retrievedUser = $this->userService->find($user, $id);
+        $retrievedLevel = $this->levelService->find($user, $id);
 
         return response()->json([
             'errors' => false,
-            'data' => $retrievedUser->learningResources,
+            'data' => $retrievedLevel->learningResources,
         ]);
     }
 }

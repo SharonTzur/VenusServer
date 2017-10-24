@@ -2,26 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\LearningResourceService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class LearningResourceController extends Controller
 {
 
-    /** @var UserService */
-    private $userService;
+    /** @var LearningResourceService */
+    private $learningResourceService;
 
 
     /**
      * UserController constructor.
      *
-     * @param UserService $userService
+     * @param LearningResourceService $learningResourceService
      */
     public function __construct(
-        UserService $userService
+        LearningResourceService $learningResourceService
     )
     {
-        $this->userService = $userService;
+        $this->learningResourceService = $learningResourceService;
     }
 
     /**
@@ -35,7 +36,7 @@ class UserController extends Controller
     {
         $user = $request->user();
 
-        $list = $this->userService->list($user);
+        $list = $this->learningResourceService->list($user);
 
         return response()->json([
             'errors' => false,
@@ -55,11 +56,11 @@ class UserController extends Controller
     {
         $user = $request->user();
 
-        $retrievedUser = $this->userService->find($user, $id);
+        $retrievedLearningResource = $this->learningResourceService->find($user, $id);
 
         return response()->json([
             'errors' => false,
-            'data' => $retrievedUser,
+            'data' => $retrievedLearningResource,
         ]);
     }
     /**
@@ -70,15 +71,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function findLearningResources(Request $request, $id)
+    public function findUsers(Request $request, $id)
     {
         $user = $request->user();
 
-        $retrievedUser = $this->userService->find($user, $id);
+        $retrievedLearningResource = $this->learningResourceService->find($user, $id);
 
         return response()->json([
             'errors' => false,
-            'data' => $retrievedUser->learningResources,
+            'data' => $retrievedLearningResource->users,
         ]);
     }
 }

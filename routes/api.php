@@ -56,47 +56,59 @@ Route::group(['prefix' => '/v1/'], function () {
         // User
         Route::group(['prefix' => '/users/'], function () {
 
-            Route::get('/', function () {
-                return User::all();
-            });
+            Route::get('/', [
+                'as' => 'user.list',
+                'uses' => 'UserController@list',
+            ]);
 
-            Route::get('/{id}', function ($id) {
-                return User::find($id);
-            });
+            Route::get('/{id}', [
+                'as' => 'user.find',
+                'uses' => 'UserController@find',
+            ]);
 
             //  get all of the learning resources that a specific user has
-            Route::get('/{id}/learningResources', function ($id) {
-                return User::find($id)->learningResources;
-            });
-        });
+            Route::get('/{id}/learningResources', [
+                'as' => 'auth.login',
+                'uses' => 'UserController@findLearningResources',
+            ]);        });
 
         // Levels
         Route::group(['prefix' => '/levels/'], function () {
 
-            Route::get('/', function () {
-                return Level::all();
-            });
+            Route::get('/', [
+                'as' => 'level.list',
+                'uses' => 'LevelController@list',
+            ]);
 
-            Route::get('/{id}', function ($id) {
-                return Level::find($id);
-            });
+            Route::get('/{id}', [
+                'as' => 'level.find',
+                'uses' => 'LevelController@find',
+            ]);
 
-            //   get all of the learning resources from a specific level
-            Route::get('/{id}/learningResources', function ($id) {
-                return Level::find($id)->learningResources;
-            });
+            Route::get('/{id}/learningResources', [
+                'as' => 'level.learningResources',
+                'uses' => 'LevelController@findLearningResources',
+            ]);
+
         });
 
         // LearningResources
         Route::group(['prefix' => '/learningResources/'], function () {
 
-            Route::get('/', function () {
-                return LearningResource::all();
-            });
+            Route::get('/', [
+                'as' => 'learningResource.list',
+                'uses' => 'LearningResourceController@list',
+            ]);
 
-            Route::get('/{id}', function ($id) {
-                return LearningResource::find($id);
-            });
+            Route::get('/{id}', [
+                'as' => 'learningResource.find',
+                'uses' => 'LearningResourceController@find',
+            ]);
+
+            Route::get('/{id}/users', [
+                'as' => 'learningResource.findUsers',
+                'uses' => 'LearningResourceController@findUsers',
+            ]);
 
         });
     });
