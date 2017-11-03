@@ -9,7 +9,7 @@ class LearningResource extends Model
 {
 
     protected $fillable = [
-        'levelId', 'type', 'title', 'description', 'content', 'url'
+        'levelId', 'type', 'title', 'description', 'content', 'url', 'imageUrl'
     ];
     /**
      * Supplier of this product.

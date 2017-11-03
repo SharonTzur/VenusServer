@@ -9,7 +9,7 @@ class Level extends Model
 {
 
     protected $fillable = [
-        'order', 'title', 'description',
+        'order', 'title', 'description', 'imageUrl',
     ];
 
     /**
