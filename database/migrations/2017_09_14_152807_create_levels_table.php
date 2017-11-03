@@ -17,7 +17,8 @@ class CreateLevelsTable extends Migration
             $table->increments('id');
             $table->integer('order')->unsigned();
             $table->string('title');
-            $table->string('description');
+            $table->string('description')->nullable();
+            $table->string('imageUrl')->nullable();
             $table->timestamps();
         });
     }

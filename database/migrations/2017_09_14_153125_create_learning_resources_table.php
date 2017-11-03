@@ -21,6 +21,7 @@ class CreateLearningResourcesTable extends Migration
             $table->string('description');
             $table->string('content')->nullable();
             $table->string('url')->nullable();
+            $table->string('imageUrl')->nullable();
             $table->timestamps();
 
             $table->foreign('level_id')
